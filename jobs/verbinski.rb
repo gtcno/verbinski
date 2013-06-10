@@ -23,8 +23,8 @@ def time_to_str_minutes(time_obj)
 end
   
 def day_to_str(time_obj)
-  """ format: Jan 9 (Sun) """
-  return Time.at(time_obj).strftime "%b %-e (%a)"
+  """ format: Sun """
+  return Time.at(time_obj).strftime "%a"
 end
   
 SCHEDULER.every '5m', :first_in => 0 do |job|
