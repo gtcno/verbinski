@@ -1,0 +1,86 @@
+class Dashing.Verbinski extends Dashing.Widget
+
+  @accessor 'current_icon', ->
+    getIcon(@get('currently_icon'))
+   
+  @accessor 'hour_icon', ->
+    getIcon(@get('hourly_icon'))
+
+  @accessor 'day_icon', ->
+    getIcon(@get('daily_icon'))
+
+  @accessor 'week_icon', ->
+    getIcon(@get('weekly_icon'))
+
+  ready: ->
+    # This is fired when the widget is done being rendered
+
+  onData: (data) ->
+    # Handle incoming data
+    @currentTemp(@get('currently_temp'))
+    @dailyTemp(@get('daily_high'), @get('daily_low'))
+    @weeklyTemp(@get('upcoming_week'))
+    @showCompass(@get('currently_wind_bearing'))
+    @unpackWeek(@get('upcoming_week'))
+
+    # flash the html node of this widget each time data comes in
+    $(@node).fadeOut().fadeIn()
+
+  unpackWeek: (thisWeek) ->
+    # get max temp, min temp, icon for the next seven days
+    for day, index in thisWeek
+      @set 'day-' + index, day['time']
+      @set 'day-' + index + '-min', day['min_temp']
+      @set 'day-' + index + '-max', day['max_temp']
+      @set 'day-' + index + '-icon', getIcon(day['icon'])
+
+  showCompass: (windBearing) ->
+    @set 'current_wind_bearing', getCompassDirection(windBearing)
+    if windBearing == 0
+      @set 'current_wind_bearing_defined', false
+    else
+      @set 'current_wind_bearing_defined', true
+
+  getBackground: (temp) ->
+    range =
+      0: -20
+      1: [-19..-11]
+      2: [-10..-1]
+      3: [0..4]
+      4: [5..9]
+      5: [10..14]
+      6: [15..19]
+      7: [20..24]
+      8: 25
+
+    weather = "#4b4b4b"
+    switch
+      when temp <= range[0] then weather = 'cold5'
+      when temp in range[1] then weather = 'cold4'
+      when temp in range[2] then weather = 'cold3'
+      when temp in range[3] then weather = 'cold2'
+      when temp in range[4] then weather = 'cold1'
+      when temp in range[5] then weather = 'cool2'
+      when temp in range[6] then weather = 'cool1'
+      when temp in range[7] then weather = 'warm'
+      when temp >= range[8] then weather = 'hot'
+    weather
+
+  currentTemp: (temp) ->
+    @set 'right_now', @getBackground(temp)
+
+  dailyTemp: (high, low) ->
+    averageRaw = (high + low) / 2
+    average = Math.round(averageRaw)
+    @set 'today', @getBackground(average)
+
+  weeklyTemp: (weekRange) ->
+    averages = []
+    for day in weekRange
+      average = Math.round((day.max_temp + day.min_temp) / 2)
+      averages.push average
+    sum = 0
+    averages.forEach (a) -> sum += a
+    weekAverage = Math.round(sum / 7)
+    @set 'this_week', @getBackground(weekAverage)
+

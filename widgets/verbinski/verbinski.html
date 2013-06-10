@@ -1,0 +1,120 @@
+<div id="right-now" data-bind-class="right_now"> 
+  <div class="column-inner column-left">
+    <h3 class="title">Right now</h3>
+    <h2 class="temp" data-bind="currently_temp | append '&deg;' | raw"></h2>
+
+    <div class="detail-wrapper clearfix">
+      <img class="weather-icon-left" data-bind-src="current_icon" />
+      <p class="summary summary-right" data-bind="currently_summary | raw"></p>
+    </div>
+
+    <div>
+      <p>
+        <span>Humidity: </span>
+        <span data-bind="currently_humidity | raw"></span>
+      </p>
+
+      <p>
+        <span>Wind speed: </span>
+        <span data-bind="currently_wind_speed | raw"></span>
+        <span> km/h </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div id="today" data-bind-class="today">
+  <div class="column-inner column-middle">
+    <h3 class="title">Today</h3>
+
+    <div class="detail-wrapper clearfix">
+      <img class="weather-icon-left" data-bind-src="day_icon" />
+      <p class="summary summary-right" data-bind="daily_summary"></p>
+    </div>
+
+    <div class="high-low">
+      <p>
+        <span>High: </span>
+        <span data-bind="daily_high | append '&deg;' | raw"></span>
+        <span> at </span>
+        <span data-bind="daily_high_time"></span>
+      </p>
+
+      <p>
+        <span>Low: </span>
+        <span data-bind="daily_low | append '&deg;' | raw"></span>
+        <span> at </span>
+        <span data-bind="daily_low_time"></span>
+      </p>
+    </div>
+
+    <div class="sunrise-sunset">
+      <p>
+        <span>Sunrise: </span><span data-bind="daily_sunrise_time"></span>
+        <img class="weather-icon-inline large" src="/assets/climacons/svg/Sunrise.svg" />
+      </p>
+      <p>
+        <span>Sunset: </span><span data-bind="daily_sunset_time"></span>
+        <img class="weather-icon-inline large" src="/assets/climacons/svg/Sunset.svg" />
+      </p>
+    </div>
+
+    <div class="meta">
+      <p class="powered-by">Powered by Forecast.io</p>
+      <p class="updated-at" data-bind="updatedAtMessage"></p>
+    </div>
+  </div>
+</div>
+
+
+<div id="this-week" data-bind-class="this_week">
+  <div class="column-inner column-right">
+    <h3 class="title">This week</h3>
+    <div class="upcoming-week">
+      <p>
+        <span data-bind="day-0"></span>: 
+        <span data-bind="day-0-min | raw"></span> -
+        <span data-bind="day-0-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-0-icon" />
+      </p>
+      <p>
+        <span data-bind="day-1"></span>: 
+        <span data-bind="day-1-min | raw"></span> -
+        <span data-bind="day-1-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-1-icon" />
+      </p>
+      <p>
+        <span data-bind="day-2"></span>: 
+        <span data-bind="day-2-min | raw"></span> -
+        <span data-bind="day-2-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-2-icon" />
+      </p>
+      <p>
+        <span data-bind="day-3"></span>: 
+        <span data-bind="day-3-min | raw"></span> -
+        <span data-bind="day-3-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-3-icon" />
+      </p>
+      <p>
+        <span data-bind="day-4"></span>: 
+        <span data-bind="day-4-min | raw"></span> -
+        <span data-bind="day-4-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-4-icon" />
+      </p>
+      <p>
+        <span data-bind="day-5"></span>: 
+        <span data-bind="day-5-min | raw"></span> -
+        <span data-bind="day-5-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-5-icon" />
+      </p>
+      <p>
+        <span data-bind="day-6"></span>: 
+        <span data-bind="day-6-min | raw"></span> -
+        <span data-bind="day-6-max | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day-6-icon" />
+      </p>
+    </div>
+  </div>
+</div>
+
