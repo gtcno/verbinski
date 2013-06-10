@@ -23,7 +23,7 @@ def time_to_str_minutes(time_obj)
 end
   
 def day_to_str(time_obj)
-  """ format: Sun, Jan 9 """
+  """ format: Jan 9 (Sun) """
   return Time.at(time_obj).strftime "%b %-e (%a)"
 end
   
