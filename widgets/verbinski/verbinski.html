@@ -68,51 +68,15 @@
 </div>
 
 
-<div id="this-week" data-bind-class="this_week">
+<div id="this-week" data-bind-class="this_week_bg">
   <div class="column-inner column-right">
     <h3 class="title">This week</h3>
     <div class="upcoming-week">
-      <p>
-        <span data-bind="day-0"></span>: 
-        <span data-bind="day-0-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-0-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-0-icon" />
-      </p>
-      <p>
-        <span data-bind="day-1"></span>: 
-        <span data-bind="day-1-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-1-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-1-icon" />
-      </p>
-      <p>
-        <span data-bind="day-2"></span>: 
-        <span data-bind="day-2-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-2-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-2-icon" />
-      </p>
-      <p>
-        <span data-bind="day-3"></span>: 
-        <span data-bind="day-3-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-3-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-3-icon" />
-      </p>
-      <p>
-        <span data-bind="day-4"></span>: 
-        <span data-bind="day-4-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-4-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-4-icon" />
-      </p>
-      <p>
-        <span data-bind="day-5"></span>: 
-        <span data-bind="day-5-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-5-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-5-icon" />
-      </p>
-      <p>
-        <span data-bind="day-6"></span>: 
-        <span data-bind="day-6-min | append '&deg;' | raw"></span> -
-        <span data-bind="day-6-max | append '&deg;' | raw"></span>
-        <img class="weather-icon-inline" data-bind-src="day-6-icon" />
+      <p data-foreach-day="this_week">
+        <span data-bind="day.time"></span>:
+        <span data-bind="day.min_temp | raw"></span> -
+        <span data-bind="day.max_temp | raw"></span>
+        <img class="weather-icon-inline" data-bind-src="day.icon" />
       </p>
     </div>
   </div>

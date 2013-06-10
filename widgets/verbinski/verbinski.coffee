@@ -27,18 +27,16 @@ class Dashing.Verbinski extends Dashing.Widget
 
   unpackWeek: (thisWeek) ->
     # get max temp, min temp, icon for the next seven days
-    for day, index in thisWeek
-      @set 'day-' + index, day['time']
-      @set 'day-' + index + '-min', day['min_temp']
-      @set 'day-' + index + '-max', day['max_temp']
-      @set 'day-' + index + '-icon', getIcon(day['icon'])
-
-  showCompass: (windBearing) ->
-    @set 'current_wind_bearing', getCompassDirection(windBearing)
-    if windBearing == 0
-      @set 'current_wind_bearing_defined', false
-    else
-      @set 'current_wind_bearing_defined', true
+    days = []
+    for day in thisWeek
+      dayObj = {
+        time: day['time'],
+        min_temp: "#{day['min_temp']}&deg;",
+        max_temp: "#{day['max_temp']}&deg;",
+        icon: getIcon(day['icon'])
+      }
+      days.push dayObj
+    @set 'this_week', days
 
   getBackground: (temp) ->
     range =
@@ -81,5 +79,5 @@ class Dashing.Verbinski extends Dashing.Widget
     sum = 0
     averages.forEach (a) -> sum += a
     weekAverage = Math.round(sum / 7)
-    @set 'this_week', @getBackground(weekAverage)
+    @set 'this_week_bg', @getBackground(weekAverage)
 
