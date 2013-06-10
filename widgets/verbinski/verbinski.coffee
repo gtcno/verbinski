@@ -20,7 +20,6 @@ class Dashing.Verbinski extends Dashing.Widget
     @currentTemp(@get('currently_temp'))
     @dailyTemp(@get('daily_high'), @get('daily_low'))
     @weeklyTemp(@get('upcoming_week'))
-    @showCompass(@get('currently_wind_bearing'))
     @unpackWeek(@get('upcoming_week'))
 
     # flash the html node of this widget each time data comes in
