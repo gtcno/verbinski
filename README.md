@@ -10,7 +10,7 @@ Inspired by [Klimato](https://github.com/danillotuhumury/klimato-dashing-widget)
 
 ## Screenshot
 
-![screenshot](screenshots/2013-06-09-1954.png)
+![screenshot](screenshots/2013-06-09-2116.png)
 
 
 ## Usage
