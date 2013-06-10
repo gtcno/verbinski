@@ -25,3 +25,9 @@ Inspired by [Klimato](https://github.com/danillotuhumury/klimato-dashing-widget)
     </li>  
     ```
 
+
+## Links
+
+* [v2 Forecast API](https://developer.forecast.io/docs/v2)
+* [Dashing](http://shopify.github.io/dashing/)
+
