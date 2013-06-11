@@ -1,29 +1,46 @@
 class Dashing.Verbinski extends Dashing.Widget
 
   @accessor 'current_icon', ->
-    getIcon(@get('currently_icon'))
+    getIcon(@get('current.icon'))
    
-  @accessor 'hour_icon', ->
-    getIcon(@get('hourly_icon'))
-
   @accessor 'day_icon', ->
-    getIcon(@get('daily_icon'))
-
-  @accessor 'week_icon', ->
-    getIcon(@get('weekly_icon'))
+    getIcon(@get('today.icon'))
 
   ready: ->
     # This is fired when the widget is done being rendered
 
   onData: (data) ->
     # Handle incoming data
-    @currentTemp(@get('currently_temp'))
-    @dailyTemp(@get('daily_high'), @get('daily_low'))
-    @weeklyTemp(@get('upcoming_week'))
+    @currentBg(@get('current.temperature'))
+    @getWindDirection(@get('current.wind_bearing'))
+    @todayBg(@get('today.high'), @get('today.low'))
+    @thisWeekBg(@get('upcoming_week'))
     @unpackWeek(@get('upcoming_week'))
+    @getTime()
 
     # flash the html node of this widget each time data comes in
     $(@node).fadeOut().fadeIn()
+
+  currentBg: (temp) ->
+    @set 'right_now', @getBackground(temp)
+
+  getWindDirection: (windBearing) ->
+    @set 'wind_bearing', getWindDirection(windBearing)
+
+  todayBg: (high, low) ->
+    averageRaw = (high + low) / 2
+    average = Math.round(averageRaw)
+    @set 'today_bg', @getBackground(average)
+
+  thisWeekBg: (weekRange) ->
+    averages = []
+    for day in weekRange
+      average = Math.round((day.max_temp + day.min_temp) / 2)
+      averages.push average
+    sum = 0
+    averages.forEach (a) -> sum += a
+    weekAverage = Math.round(sum / 7)
+    @set 'this_week_bg', @getBackground(weekAverage)
 
   unpackWeek: (thisWeek) ->
     # get max temp, min temp, icon for the next seven days
@@ -63,21 +80,10 @@ class Dashing.Verbinski extends Dashing.Widget
       when temp >= range[8] then weather = 'hot'
     weather
 
-  currentTemp: (temp) ->
-    @set 'right_now', @getBackground(temp)
-
-  dailyTemp: (high, low) ->
-    averageRaw = (high + low) / 2
-    average = Math.round(averageRaw)
-    @set 'today', @getBackground(average)
-
-  weeklyTemp: (weekRange) ->
-    averages = []
-    for day in weekRange
-      average = Math.round((day.max_temp + day.min_temp) / 2)
-      averages.push average
-    sum = 0
-    averages.forEach (a) -> sum += a
-    weekAverage = Math.round(sum / 7)
-    @set 'this_week_bg', @getBackground(weekAverage)
+  getTime: (now = new Date()) ->
+    hour = now.getHours()
+    minutes = now.getMinutes()
+    ampm = if hour >= 12 then "pm" else "am"
+    hour12 = if hour % 12 then hour % 12 else 12
+    @set 'last_updated', "#{hour12}:#{minutes} #{ampm}"
 

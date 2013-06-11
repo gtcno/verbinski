@@ -58,7 +58,8 @@ $hot: #ff5131; // 25 and above
         text-align: left;
       }
 
-      .detail-wrapper {
+      // icon + summary
+      .summary-wrapper {
         display: table;
         margin: 0 10px;
 
@@ -74,8 +75,14 @@ $hot: #ff5131; // 25 and above
         }
       }
 
-      .upcoming-week, .sunrise-sunset, .details-list {
-        margin: 10px 5px 0;
+      .details-text-only { 
+        font-size: $info; 
+        margin-top: 10px;
+      }
+
+      .upcoming-week {
+        margin: 15px 0 15px 50px;
+        text-align: left; 
 
         p { 
           font-size: $info;
@@ -92,22 +99,16 @@ $hot: #ff5131; // 25 and above
         }
       }
 
-      .upcoming-week { 
-        text-align: left; 
-        margin: 15px 0 15px 50px;
+      .powered-by { 
+        margin-top: 20px;
+        color: $light-colour; 
+        font-size: $info-small;
       }
-      .sunrise-sunset { margin-bottom: 20px; }
-      .high-low { font-size: $info; }
+      .last-updated {
+        font-size: $info-small;
+        color: $dark-colour;
+      }
     }
   } 
-
-  .powered-by { 
-    color: $light-colour; 
-    font-size: $info-small;
-  }
-
-  .updated-at { 
-    color: $dark-colour;
-  }
 }
 

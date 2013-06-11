@@ -1,4 +1,3 @@
-
 console.log("Verbinski (the weather widget) has been loaded!");
 
 function getIcon(iconKey) {
@@ -24,5 +23,20 @@ function getIcon(iconKey) {
   }
   var fullPath = prefix + iconMap[key] + ext;
   return fullPath;
+}
+
+function getWindDirection(windBearing) {
+  // windBearing is where the wind is coming FROM
+  var direction;
+  if ((windBearing > 315) || (windBearing < 45)) {
+    direction = "S";
+  } else if ((windBearing >= 45) && (windBearing < 135)) {
+    direction = "W";
+  } else if ((windBearing >= 135) && (windBearing < 225)) {
+    direction = "N";
+  } else {
+    direction = "E";
+  }
+  return direction;
 }
 
