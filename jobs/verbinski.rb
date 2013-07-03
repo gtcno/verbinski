@@ -3,11 +3,11 @@ require 'net/https'
 require 'json'
 
 # Forecast API Key from https://developer.forecast.io
-forecast_api_key = ""
+forecast_api_key = ENV['FORECAST_API_KEY'] 
 
 # Latitude, Longitude for location
-forecast_location_lat = ""
-forecast_location_long = ""
+forecast_location_lat = ENV['LATITUDE'] 
+forecast_location_long = ENV['LONGITUDE'] 
 
 # Unit Format
 forecast_units = "ca" # like "si", except windSpeed is in kph
