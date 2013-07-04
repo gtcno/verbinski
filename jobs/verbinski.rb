@@ -48,9 +48,7 @@ SCHEDULER.every '5m', :first_in => 0 do |job|
   today = {
     summary: forecast["hourly"]["summary"],
     high: daily["temperatureMax"].round,
-    high_time: time_to_str(daily["temperatureMaxTime"]),
     low: daily["temperatureMin"].round,
-    low_time: time_to_str(daily["temperatureMinTime"]),
     sunrise: time_to_str_minutes(daily["sunriseTime"]),
     sunset: time_to_str_minutes(daily["sunsetTime"]),
     icon: daily["icon"]
