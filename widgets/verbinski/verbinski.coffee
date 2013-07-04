@@ -83,6 +83,7 @@ class Dashing.Verbinski extends Dashing.Widget
   getTime: (now = new Date()) ->
     hour = now.getHours()
     minutes = now.getMinutes()
+    minutes = if minutes < 10 then "0#{minutes}" else minutes
     ampm = if hour >= 12 then "pm" else "am"
     hour12 = if hour % 12 then hour % 12 else 12
     @set 'last_updated', "#{hour12}:#{minutes} #{ampm}"
