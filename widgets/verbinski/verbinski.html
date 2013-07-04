@@ -35,17 +35,11 @@
 
     <div class="details-text-only">
       <p>
-        <span>High: </span>
-        <span data-bind="today.high | append '&deg;' | raw"></span>
-        <span> at </span>
-        <span data-bind="today.high_time"></span>
-      </p>
-
-      <p>
-        <span>Low: </span>
-        <span data-bind="today.low | append '&deg;' | raw"></span>
-        <span> at </span>
-        <span data-bind="today.low_time"></span>
+        <span>L&thinsp;: </span>
+        <span data-bind="today.low | append '&deg;C' | raw"></span>
+        <span> | </span>
+        <span>H&thinsp;: </span>
+        <span data-bind="today.high | append '&deg;C' | raw"></span>
       </p>
     </div>
 
